@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Player2
+  - Board
+  - Veg
+  - Customer
   layers:
   - Default
   - TransparentFX

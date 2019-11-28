@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8211959223907672894}
   - component: {fileID: 6307704439211128512}
   - component: {fileID: 3048020056121410934}
+  - component: {fileID: -7175767707307987181}
   m_Layer: 0
   m_Name: Lettuce
   m_TagString: Untagged
@@ -128,3 +129,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8974887, y: 2.78}
   m_EdgeRadius: 0
+--- !u!114 &-7175767707307987181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3030475818219505220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad70e5c3270e4148aec2c986c866a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vegId: 6

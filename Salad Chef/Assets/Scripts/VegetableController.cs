@@ -5,6 +5,7 @@ using UnityEngine;
 public class VegetableController : MonoBehaviour
 {
     private Animator vegAnimator;
+    public int vegId;
     void Start()
     {
         vegAnimator = GetComponent<Animator>();

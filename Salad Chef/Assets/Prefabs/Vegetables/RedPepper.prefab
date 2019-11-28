@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4585895774912886387}
   - component: {fileID: 1863247017198920589}
   - component: {fileID: 7214305466548342843}
+  - component: {fileID: -5075288268470139638}
   m_Layer: 0
   m_Name: RedPepper
   m_TagString: Untagged
@@ -128,3 +129,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8974887, y: 2.78}
   m_EdgeRadius: 0
+--- !u!114 &-5075288268470139638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231808198288954121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ad70e5c3270e4148aec2c986c866a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vegId: 4
