@@ -7,7 +7,8 @@ public class CustomerController : MonoBehaviour
     public VegetableObjects vegetableObjects;
     public List<GameObject> combinationVegContainer;
     public int customerId;
-    public int Index = 1;
+    public int Index = 0;
+    public Vector3 spawnPoint;
 
     void OnEnable()
     {
@@ -21,36 +22,60 @@ public class CustomerController : MonoBehaviour
 
     void GenerateCombinationOfVegetables()
     {
-        int randomVegetableNumber = Random.Range(0, vegetableObjects.vegetables.Count - 1);
-        int temp = Mathf.RoundToInt(vegetableObjects.vegetables.Count / 2);
-        int randomCombinationCount = Random.Range(0, temp);
+
+        int randomCombinationCount = Random.Range(1, vegetableObjects.vegetables.Count - 1);
         for (int i = 0; i < randomCombinationCount; i++)
         {
-            GameObject generatedPrefab = Instantiate(vegetableObjects.vegetables[i], transform);
+            int randomVegetableNumber = Random.Range(0, vegetableObjects.vegetables.Count - 1);
+            GameObject generatedPrefab = Instantiate(vegetableObjects.vegetables[randomVegetableNumber], transform);
+            generatedPrefab.transform.localPosition = spawnPoint;
+            generatedPrefab.transform.localScale = new Vector3(.2f, .2f,0f);
+            spawnPoint.y -= 0.7f;
             combinationVegContainer.Add(generatedPrefab);
         }
     }
 
-    void CustomerFeedBack(GameObject gameObject, int playerId, int customerIdFromPlayer)
+    void CustomerFeedBack(List<GameObject> finalChoppedVegs, int playerId, int customerIdFromPlayer)
     {
         if (customerId == customerIdFromPlayer)
         {
-            foreach (GameObject item in combinationVegContainer)
+            if(finalChoppedVegs.Count!= combinationVegContainer.Count)
             {
-                if(gameObject.GetComponent<VegetableController>().vegId == item.GetComponent<VegetableController>().vegId)
+                Debug.Log("False Salad");
+            }
+            else
+            {
+                for (int i = 0; i < combinationVegContainer.Count; i++)
                 {
-                    Index++;
+                    for (int j = 0; j < combinationVegContainer.Count; j++)
+                    {
+                        if (finalChoppedVegs[i].GetComponent<VegetableController>().vegId == combinationVegContainer[j].GetComponent<VegetableController>().vegId)
+                        {
+                            Index++;
+                            if (Index == combinationVegContainer.Count)
+                            {
+                                Debug.Log("Success");
+                                //Invoke Reset 3s
+                            }
+                        }
+                    }
                 }
-            }
-            if (Index == combinationVegContainer.Count)
-            {
-                Debug.Log("Success");
-            }
+            }            
         }
         else
         {
             return;
         }
+    }
+
+    public void Reset()
+    {
+        foreach (GameObject item in combinationVegContainer)
+        {
+            Destroy(item);
+        }
+        combinationVegContainer.Clear();
+        GenerateCombinationOfVegetables();
     }
     void OnDisable()
     {

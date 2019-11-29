@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8044347811752073183}
   - component: {fileID: 8211959223907672894}
-  - component: {fileID: 6307704439211128512}
-  - component: {fileID: 3048020056121410934}
   - component: {fileID: -7175767707307987181}
   m_Layer: 0
   m_Name: Lettuce
@@ -71,7 +69,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -7625798587599904533, guid: f4b95b3c2716e804dbe34a865e6bbc69,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -84,51 +82,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6307704439211128512
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030475818219505220}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: edb8463a89bc5994e8f1d0459378375a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!61 &3048020056121410934
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3030475818219505220}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.13874441, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.59, y: 1.58}
-    newSize: {x: 1.62, y: 2.78}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.8974887, y: 2.78}
-  m_EdgeRadius: 0
 --- !u!114 &-7175767707307987181
 MonoBehaviour:
   m_ObjectHideFlags: 0

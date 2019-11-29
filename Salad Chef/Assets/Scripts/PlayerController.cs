@@ -9,16 +9,22 @@ public class PlayerController : MonoBehaviour
     public int PlayerId;
     public enum PlayerState
     {
-        Idle,
-        PickedVeg,
-        ChoppedVeg
+        VegPicked,
+        Dropped,
+        SaladPicked,
+        Delivered
     }
-    public static PlayerState playerState;
-    public static event Action<GameObject, int, int> OnDroppedToCustomerPlate;
+    public  PlayerState playerState;
+    public static event Action<List<GameObject>, int, int> OnDroppedToCustomerPlate;
+    public static event Action OnGameOver;
     public List<GameObject> pickedVegs;
-    public List<GameObject> choppedVegs;
+    public List<GameObject> finalChoppedCombinationVegs;
+    public List<GameObject> boardVegs;
     public VegetableObjects vegetableObjects;
     public GameObject selectedObject;
+    public GameObject saladObject;
+    public int playerScore = 0;
+    public float timeLeft = 20f;
 
     Rigidbody2D playerRigidbody;
     Vector2 movement;
@@ -26,12 +32,12 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        playerState = PlayerState.Idle;
         playerRigidbody = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
         MovePlayer();
+        CheckPlayerTimeOutToOver();
         if (Input.GetKeyDown(KeyCode.Space) && isTrigger && selectedObject.tag == "Veg")
         {
             PickVegetable();
@@ -44,12 +50,12 @@ public class PlayerController : MonoBehaviour
         else if(Input.GetKeyDown(KeyCode.E) && isTrigger && selectedObject.tag == "Board")
         {
             BoardController boardController = selectedObject.GetComponent<BoardController>();
-            DropToBoard(boardController.boardId);
+            DropToBoard(boardController.boardId, selectedObject);
         }
         else if (Input.GetKeyDown(KeyCode.E) && isTrigger && selectedObject.tag == "Customer")
         {
             CustomerController customerController = selectedObject.GetComponent<CustomerController>();
-            DropToBoard(customerController.customerId);
+            DropToCustomerPlate(customerController.customerId);
         }
     }
 
@@ -73,6 +79,7 @@ public class PlayerController : MonoBehaviour
     //Movement of both players
     void MovePlayer()
     {
+
         if (gameObject.tag == "Player")
         {
             movement.x = Input.GetAxisRaw("Player1Horizontal");
@@ -87,47 +94,79 @@ public class PlayerController : MonoBehaviour
 
     void PickVegetable()
     {
-        if (pickedVegs.Count == 2)
+        if (pickedVegs.Count == 2 && playerState == PlayerState.SaladPicked)
         {
             return;
         }
-        if (playerState == PlayerState.Idle)
-            InstantiateVegetableFromTable();
+        InstantiateVegetableFromTable();
+        playerState = PlayerState.VegPicked;
     }
 
     void InstantiateVegetableFromTable()
     {
-        GameObject temp = Instantiate(selectedObject, transform);
-        temp.transform.localScale = Vector3.one;
-        temp.transform.localPosition = new Vector3(temp.transform.position.x + 2, temp.transform.position.y, 0);
-        pickedVegs.Add(temp);
+        GameObject generatePrefab = Instantiate(selectedObject, transform);
+        generatePrefab.GetComponent<Animator>().enabled = false;
+        generatePrefab.GetComponent<BoxCollider2D>().enabled = false;
+        ResetTransform(generatePrefab);
+        pickedVegs.Add(generatePrefab);
     }
 
     void InstantiateVegetableFromBoard(int boardId)
     {
-        if (choppedVegs != null && PlayerId != boardId)
+        if (boardVegs != null && PlayerId != boardId)
         {
             return;
         }
-        choppedVegs[0].transform.parent = transform;
-        choppedVegs.Clear();
+        if(playerState == PlayerState.Dropped)
+        {
+            GameObject generatePrefab = Instantiate(saladObject, transform);
+            ResetTransform(generatePrefab);
+            foreach (GameObject item in boardVegs)
+            {
+                finalChoppedCombinationVegs.Add(item);
+            }
+            boardVegs.Clear();
+            playerState = PlayerState.SaladPicked;
+        }
     }       
-    public void DropToBoard(int boardId)
+    public void DropToBoard(int boardId, GameObject board)
     {
-        if(choppedVegs.Count > 0 && PlayerId != boardId)
+        if(PlayerId != boardId)
         {
             return;
         }
         GameObject generatePrefab = pickedVegs[0];
         pickedVegs.RemoveAt(0);
-        generatePrefab.transform.parent = null;
-        generatePrefab.transform.localPosition = new Vector3(-2.59f, -4.83f, 0);
-        choppedVegs.Add(generatePrefab);
+        generatePrefab.transform.parent = board.transform;
+        ResetTransform(generatePrefab);
+        boardVegs.Add(generatePrefab);
+        playerState = PlayerState.Dropped;
     }
 
     void DropToCustomerPlate(int customerId)
     {
-        OnDroppedToCustomerPlate(pickedVegs[0], PlayerId, customerId);
+        if(playerState == PlayerState.SaladPicked)
+        OnDroppedToCustomerPlate(finalChoppedCombinationVegs, PlayerId, customerId);
     }
 
+    void ResetTransform(GameObject temp)
+    {
+        temp.transform.localScale = Vector3.one;
+        temp.transform.localPosition = Vector3.zero;
+    }
+
+    void CheckPlayerTimeOutToOver()
+    {
+        timeLeft -= Time.deltaTime;
+        if(timeLeft <= 0)
+        {
+            //OnGameOver();
+        }
+    }
+
+    void SuccessFullDelivering()
+    {
+        playerScore += 10;
+        finalChoppedCombinationVegs.Clear();
+    }
 }
