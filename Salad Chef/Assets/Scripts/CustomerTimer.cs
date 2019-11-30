@@ -7,10 +7,14 @@ public class CustomerTimer : MonoBehaviour
 {
     
     private float timeLeft;
-    private float timeMax = 15f;
+    private float timeMax = 3f;
     public Slider slider;
     public GameEvent OnOverCustomerTime;
 
+    void OnEnable()
+    {
+        GameController.OnGameOver += StopTimer;
+    }
     void Start()
     {
         timeLeft = timeMax;
@@ -22,7 +26,7 @@ public class CustomerTimer : MonoBehaviour
         {
             timeLeft = 0;
             OnOverCustomerTime.InvokeEvent();
-            Reset();
+            ResetTimer();
         }
         else if (timeLeft > 0)
         {
@@ -35,9 +39,19 @@ public class CustomerTimer : MonoBehaviour
         return (timeLeft / timeMax);
     }
 
-    public void Reset()
+    public void ResetTimer()
     {
         timeMax = 15f;
         timeLeft = timeMax;
+    }
+
+    void StopTimer()
+    {
+        Debug.Log("Stop Time");
+    }
+
+    void OnDisable()
+    {
+        GameController.OnGameOver -= StopTimer;
     }
 }

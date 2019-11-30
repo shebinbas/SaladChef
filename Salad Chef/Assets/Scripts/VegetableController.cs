@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class VegetableController : MonoBehaviour
 {
-    private Animator vegAnimator;
     public int vegId;
+
+    private Animator vegAnimator;
     void Start()
     {
         vegAnimator = GetComponent<Animator>();
     }
+    
+    //Triggering Animation
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "Player2")

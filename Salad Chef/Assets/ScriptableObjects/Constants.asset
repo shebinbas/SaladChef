@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ff98d434039a9647bce4bd8a355733a, type: 3}
+  m_Name: Constants
+  m_EditorClassIdentifier: 
+  Player1Id: 1
+  Player2Id: 2
+  DefaultSpeed: 5
+  MaximumPickingVegetabels: 2
+  PlayerTime: 120
+  CustomerTime: 30
+  CustomerExitTime: 3
+  VegetableSpawnPoint: {x: 0, y: 0, z: 0}
+  StartIndex: 0
+  TotalPlayers: 2
+  DefaultScore: 30
+  DefaultPenality: 10
+  SaladObject: {fileID: 1792598274979588968, guid: 249ccc783202b364d907cc66848d3d29,
+    type: 3}
+  HappyObject: {fileID: 6224844099888311430, guid: 6d0c2fd799cf3054192f8fe729e6e145,
+    type: 3}
+  AngryObject: {fileID: 8542854215622761765, guid: 10be800e59927c84a8ad73088d22169b,
+    type: 3}
