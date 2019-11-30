@@ -32,12 +32,11 @@
 - Score & Time Handling
 
 
-
 **Controls**
-Player 1 - Arrow Keys For Movement, Pickup - O , Drop - P (We Can Change Through PlayerController Script) 
-Player 2 - Wasd Keys For Movement, Pickup - E , Drop - R (We Can Change Through PlayerController Script) 
+- Player 1 - Arrow Keys For Movement, Pickup - O , Drop - P (We Can Change Through PlayerController Script) 
+- Player 2 - WASD Keys For Movement, Pickup - E , Drop - R (We Can Change Through PlayerController Script) 
 
 **Todo**
-Trash Feature
-Extra Plate Feature
-Powerups Feature
+- Trash Feature
+- Extra Plate Feature
+- Powerups Feature
