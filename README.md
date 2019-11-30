@@ -1,36 +1,43 @@
 #Salad Chef Test Simulation Unity
-TOOLS USED
-UNITY 3D 2019.3.0a5
-Visual Studio 2019
-Adobe Illustrator
+
+**Tools Used **
+- Unity3D 2019.3.0a5
+- Visual Studio 2019
+- Adobe Illustrator
+- Adobe PhotoShop
 
 
-SUPPORTED PLATFORMS
-Windows, Android, iOS
+**Supported Platforms **
+- Windows,
+- Android
+- iOS
 
-CODE STRUCTURE
-All codes can be found inside Scripts Folder.
-Games Constants are defined using Scriptable Object.
-GameController handles the game play.
+**Code Structure**
+- All Codes Can Be Found Inside Scripts Folder.
+- Event Action Pattern.
+- Games Constants Are Defined Using Scriptable Object.
+- GameController Handles The Game Play.
+- UIManager Controls The Whole UI Part
 
-Customer Controller handles the following functionalities
+###### Customer Controller Handles The Following Functionalities:
 
-Customer Timer
-Customer FeedBack
-Customer Vegetable Combination Generation
+- Customer Timer
+- Customer Feedback
+- Customer Vegetable Combination Generation
 
-Player Controller handles the following functionalities
+###### Player Controller Handles The Following Functionalities:
 
-Movement Of Player
-Picking and Dropping Vegetables
-Score & Time Handling
+- Movement Of Player
+- Picking And Dropping Vegetables
+- Score & Time Handling
 
-UIManager controls the whole UI Part
 
-CONTROLS
-Player 1 - Arrow Keys For Movement, PickUp - O , Drop - P (We can change through PlayerControllerScript) 
-Player 2 - WASD Keys For Movement, PickUp - E , Drop - R (We can change through PlayerControllerScript) 
 
-TODO
+**Controls**
+Player 1 - Arrow Keys For Movement, Pickup - O , Drop - P (We Can Change Through PlayerController Script) 
+Player 2 - Wasd Keys For Movement, Pickup - E , Drop - R (We Can Change Through PlayerController Script) 
+
+**Todo**
 Trash Feature
-Extra Plate
+Extra Plate Feature
+Powerups Feature
